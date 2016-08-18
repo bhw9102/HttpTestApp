@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">HttpTestApp</string>
+    <string name="sample_address">000.000.000.000:0000</string>
+</resources>
