@@ -10,8 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.util.Properties;
+import java.util.StringTokenizer;
 
 public class HttpTestActivity extends AppCompatActivity implements Handler.Callback{
 
@@ -24,6 +27,7 @@ public class HttpTestActivity extends AppCompatActivity implements Handler.Callb
     public TextView percentView;
     public Button addressSetButton;
     public EditText addressEdit;
+    public TextView failView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,7 @@ public class HttpTestActivity extends AppCompatActivity implements Handler.Callb
         responseView = (TextView) findViewById(R.id.response);
         requestView = (TextView) findViewById(R.id.request);
         percentView = (TextView) findViewById(R.id.httpPercent);
+        failView = (TextView) findViewById(R.id.fail);
     }
 
 
@@ -110,6 +115,7 @@ public class HttpTestActivity extends AppCompatActivity implements Handler.Callb
             requestView.setText(String.valueOf(requestCount));
             responseView.setText(String.valueOf(responseCount));
             percentView.setText(String.valueOf(Math.round(percent)));
+            failView.setText(String.valueOf(timer.getFailCount()));
         }
         return false;
     }

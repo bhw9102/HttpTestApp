@@ -118,7 +118,25 @@
             android:layout_height="wrap_content"
             android:text="%"
             android:textSize="@dimen/middle_font_size"
+            android:id="@+id/percentUnit"
             android:layout_toRightOf="@id/httpPercent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00"
+            android:textSize="@dimen/common_font_size"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/percentUnit"
+            android:id="@+id/fail"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fail : "
+            android:textSize="@dimen/common_font_size"
+            android:layout_toLeftOf="@id/fail"
+            android:layout_alignBottom="@id/percentUnit"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/failLabel"/>
     </RelativeLayout>
 
 </LinearLayout>

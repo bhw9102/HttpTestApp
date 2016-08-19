@@ -26,6 +26,11 @@ public class Timer extends Thread {
     private boolean isCount = false;
     private long elapsedTime = 0;
 
+
+    private int requestCount = 0;
+    private int responseCount = 0;
+    private int failCount = 0;
+
     public int getResponseCount() {
         return responseCount;
     }
@@ -34,8 +39,9 @@ public class Timer extends Thread {
         return requestCount;
     }
 
-    private int requestCount = 0;
-    private int responseCount = 0;
+    public int getFailCount() {
+        return failCount;
+    }
 
     public static Timer getInstance(Handler instanceHandler){
         handler = instanceHandler;
@@ -102,6 +108,7 @@ public class Timer extends Thread {
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 Log.e("debug", "test fail");
+                failCount = failCount + ONE_COUNT;
             }
         });
     }
