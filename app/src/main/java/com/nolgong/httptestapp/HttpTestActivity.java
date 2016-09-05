@@ -1,11 +1,14 @@
 package com.nolgong.httptestapp;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -28,6 +31,7 @@ public class HttpTestActivity extends AppCompatActivity implements Handler.Callb
     public Button addressSetButton;
     public EditText addressEdit;
     public TextView failView;
+    public TextView currentIp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +68,18 @@ public class HttpTestActivity extends AppCompatActivity implements Handler.Callb
         requestView = (TextView) findViewById(R.id.request);
         percentView = (TextView) findViewById(R.id.httpPercent);
         failView = (TextView) findViewById(R.id.fail);
-    }
+        currentIp = (TextView) findViewById(R.id.currentIp);
 
+//        currentIp.setText(NetworkClient.getCurrentIp());
+    }
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if(getCurrentFocus()!=null){
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 
     private void startTest(){
         if(!timer.isCount()){

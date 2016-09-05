@@ -16,9 +16,11 @@ public class NetworkClient {
     private static NetworkClient ourInstance = null;
     private Retrofit retrofit;
     private HttpTestService service;
+    private String currentIp = "0000";
 
     private NetworkClient(String serverAddress) {
         Log.e("debug", "NetworkClient Constructor : " + serverAddress);
+        currentIp = serverAddress;
         retrofit = new Retrofit.Builder()
                 .baseUrl(serverAddress)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -38,5 +40,9 @@ public class NetworkClient {
     public void test(Callback<JsonObject> cb){
         Call<JsonObject> call = service.test();
         call.enqueue(cb);
+    }
+
+    public String getCurrentIp() {
+        return currentIp;
     }
 }

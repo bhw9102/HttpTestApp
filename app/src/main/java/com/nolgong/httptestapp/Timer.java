@@ -66,9 +66,12 @@ public class Timer extends Thread {
 
     @Override
     public synchronized void start() {
-        super.start();
+        if(!this.isThreading) {
+            super.start();
+        }
         this.isThreading = true;
     }
+
     @Override
     public void run(){
         while(this.isThreading) {
